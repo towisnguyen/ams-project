@@ -1,0 +1,326 @@
+<div class="p-2.5 w-[700px]">
+  <div class="flex justify-between">
+    <h1>Edit Asset</h1>
+    <button (click)="closeForm()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 mr-2.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div>
+    <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)">
+      <div class="my-2.5 mx-5">
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Name
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('name').touched"
+              *ngIf="updateForm.get('name').invalid"
+              class="text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <input
+            required
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('name').errors
+            }"
+            class="mt-0 form-control"
+            type="text"
+            name="name"
+            placeholder="Asset name"
+          />
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Category
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('category_id').touched"
+              *ngIf="updateForm.get('category_id').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="category_id"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('category_id').errors
+            }"
+            class="form-control"
+            name="category_id"
+          >
+            <option selected value hidden>Select Category</option>
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.id }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            IMEI
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('imei').touched"
+              *ngIf="updateForm.get('imei').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <input
+            required
+            formControlName="imei"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('imei').errors
+            }"
+            class="form-control"
+            type="text"
+            name="imei"
+            placeholder="IMEI"
+          />
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Serial Number
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('serialNumber').touched"
+              *ngIf="updateForm.get('serialNumber').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <input
+            required
+            formControlName="serialNumber"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('serialNumber').errors
+            }"
+            class="form-control"
+            type="text"
+            name="serialNumber"
+            placeholder="Serial Number"
+          />
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Inventory Number
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('inventoryNumber').touched"
+              *ngIf="updateForm.get('inventoryNumber').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <input
+            required
+            formControlName="inventoryNumber"
+            [ngClass]="{
+              'is-invalid':
+                submitted && updateForm.get('inventoryNumber').errors
+            }"
+            class="form-control"
+            type="text"
+            name="inventoryNumber"
+            placeholder="Inventory Number"
+          />
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Status
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('status_id').touched"
+              *ngIf="updateForm.get('status_id').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="status_id"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('status_id').errors
+            }"
+            class="form-control"
+            name="status_id"
+          >
+            <option selected value hidden>Select Status</option>
+            <option *ngFor="let status of status" value="{{ status.id }}">
+              {{ status.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Ownership
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('ownership').touched"
+              *ngIf="updateForm.get('ownership').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="ownership"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('ownership').errors
+            }"
+            class="form-control capitalize"
+            name="ownership"
+          >
+            <option selected value hidden>Select Ownership</option>
+            <option
+              class="capitalize"
+              *ngFor="let owner of ownerships"
+              value="{{ owner.fullName }}"
+            >
+              {{ owner.fullName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            User
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('user_id').touched"
+              *ngIf="updateForm.get('user_id').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="user_id"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('user_id').errors
+            }"
+            class="form-control capitalize"
+            name="user_id"
+          >
+            <option selected value hidden>Select User</option>
+            <option
+              class="capitalize"
+              *ngFor="let owner of ownerships"
+              value="{{ owner.id }}"
+            >
+              {{ owner.fullName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Project
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('project_id').touched"
+              *ngIf="updateForm.get('project_id').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="project_id"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('project_id').errors
+            }"
+            class="form-control"
+            name="project_id"
+          >
+            <option selected value hidden>Select Project</option>
+            <option *ngFor="let project of projects" value="{{ project.id }}">
+              {{ project.projectName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>
+            Suppiler
+            <small class="text-red-600">*</small>
+            <small
+              [hidden]="!updateForm.get('supplier_id').touched"
+              *ngIf="updateForm.get('supplier_id').invalid"
+              class="col-start-3 col-span-4 text-red-600 ml-2.5"
+            >
+              Required
+            </small>
+          </label>
+          <select
+            required
+            formControlName="supplier_id"
+            [ngClass]="{
+              'is-invalid': submitted && updateForm.get('supplier_id').errors
+            }"
+            class="form-control"
+            name="supplier_id"
+          >
+            <option selected value hidden>Select Suppiler</option>
+            <option
+              *ngFor="let supplier of suppliers"
+              value="{{ supplier.id }}"
+            >
+              {{ supplier.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group grid grid-cols-6">
+          <label>Comment</label>
+          <input
+            formControlName="comments"
+            type="text"
+            name="comments"
+            placeholder="Comment"
+          />
+        </div>
+      </div>
+
+      <div class="form-group flex justify-end mx-4">
+        <button class="bg-[#5cb85c] text-white rounded-md py-2 px-3">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

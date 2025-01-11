@@ -1,0 +1,199 @@
+.btn-add {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.btn-edit {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+// Table
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: white;
+  color: rgb(11, 50, 121);
+}
+
+.form-group {
+  height: 50%;
+  font-size: 30px;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
+
+.form-group > input {
+  height: 100%;
+  align-items: center;
+  vertical-align: center;
+}
+
+.form-group > select {
+  height: 100%;
+  align-items: center;
+  vertical-align: center;
+}
+
+.form-group > mat-icon {
+  height: 100%;
+  vertical-align: center;
+
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  margin-top: 3px;
+  vertical-align: bottom;
+  color: black;
+  background: transparent;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width: 100%;
+  }
+
+  table tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:nth-of-type(1):before { content: "Select"; }
+  table td:nth-of-type(2):before { content: "Asset ID"; }
+  table td:nth-of-type(3):before { content: "Asset Name"; }
+  table td:nth-of-type(4):before { content: "Request ID"; }
+  table td:nth-of-type(5):before { content: "Inventory Asset Number"; }
+  table td:nth-of-type(6):before { content: "Reason"; }
+  table td:nth-of-type(7):before { content: "Request Type"; }
+  table td:nth-of-type(8):before { content: "Status"; }
+  table td:nth-of-type(9):before { content: "Update Time"; }
+  table td:nth-of-type(10):before { content: "Actions"; }
+}
+
+.btnfilter {
+  border-width: 1px;
+  border-color: black;
+  color: rgba(0,0,0,.87);
+  background-color: whitesmoke;
+  width: 90%;
+  height: 50px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+.mdc-text-field {
+  align-items: center !important;
+}
+
+.mat-mdc-form-field,
+.mat-mdc-floating-label,
+.mat-mdc-select {
+  font-size: 14px !important;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  font-size: 14px !important;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.groupFilter mat-form-field {
+  margin-bottom: -1em;
+}

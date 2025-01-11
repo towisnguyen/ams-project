@@ -1,0 +1,38 @@
+<div class="dialog">
+  <h1
+    mat-dialog-title
+    style="
+      height: 100%;
+      width: 100%;
+      background-color: lightblue;
+      padding-left: 10px;
+      text-align: center;
+    "
+  >
+    {{ title }}
+    <button (click)="onDismiss()"><mat-icon>close</mat-icon></button>
+  </h1>
+
+  <div mat-dialog-content style="text-align: center">
+    <p>{{ message }}</p>
+  </div>
+
+  <div
+    mat-dialog-actions
+    style="display: flex; align-items: center; justify-content: center"
+  >
+    <div>
+      <button
+        mat-raised-button
+        class="btn"
+        color="primary"
+        (click)="onConfirm()"
+      >
+        Yes
+      </button>
+      <button mat-raised-button class="btn" color="warn" (click)="onDismiss()">
+        No
+      </button>
+    </div>
+  </div>
+</div>

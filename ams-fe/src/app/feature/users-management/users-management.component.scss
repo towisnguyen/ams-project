@@ -1,0 +1,104 @@
+.groupFilter mat-form-field {
+  margin-bottom: -1em;
+}
+
+// Filter
+mat-checkbox {
+  margin: 1rem;
+}
+
+mat-table {
+  margin-top: 1rem;
+}
+
+mat-menu {
+  width: 500px;
+}
+
+.filter-board-btn {
+  font-size: 14px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  flex-direction: row;
+}
+
+.apply-btn {
+  font-size: 14px;
+  width: 100px;
+  text-align: center;
+  background-color: #2dc019;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.cancel-btn {
+  font-size: 14px;
+  width: 100px;
+  text-align: center;
+  background-color: #009cff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+.mdc-text-field {
+  align-items: center !important;
+}
+
+.mat-mdc-form-field,
+.mat-mdc-floating-label,
+.mat-mdc-select {
+  font-size: 14px !important;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  font-size: 14px !important;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width: 100%;
+  }
+
+  table tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
+
+.backdropBackground {
+  background-color: black;
+}

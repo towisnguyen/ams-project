@@ -1,0 +1,96 @@
+// Table
+#projectTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#projectTable td,
+#projectTable th {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+}
+
+#projectTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#projectTable tr:hover {
+  background-color: #ddd;
+}
+
+#projectTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: white;
+  color: rgb(11, 50, 121);
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width: 100%;
+  }
+
+  table tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:nth-of-type(1):before { content: "ID"; }
+  table td:nth-of-type(2):before { content: "Project Name"; }
+  table td:nth-of-type(3):before { content: "Description"; }
+  table td:nth-of-type(4):before { content: "Status"; }
+  table td:nth-of-type(5):before { content: "Action"; }
+}
+
+.mat-mdc-button.mat-mdc-button-base,
+.mat-mdc-raised-button.mat-mdc-button-base,
+.mat-mdc-unelevated-button.mat-mdc-button-base,
+.mat-mdc-outlined-button.mat-mdc-button-base {
+  height: 55px;
+}
+
+.material-icons{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  color: green;
+}
+
+.name,.status{
+  width: 15%;
+}
+
+.id,.action {
+  width: 5%;
+}

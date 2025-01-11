@@ -1,0 +1,81 @@
+.main {
+   @media only screen and (max-width: 800px) {
+    max-height: 800px;
+    overflow: scroll;
+   }
+}
+
+.middle-section {
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 1530px) {
+    width: 100%;
+     padding-left: 0px;
+  }
+  @media only screen and (max-width: 1180px) {
+    width: 100%;
+     padding-left: 0px;
+  }
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  .widget {
+    height: 340px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 2px 3px 0 rgba(0, 0, 0, .1);
+
+    &.left {
+      width: 64%;
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+      }
+    }
+
+    &.right {
+      width: 36%;
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 1530px) {
+    width: 100%;
+     padding-left: 0px;
+  }
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  .widget {
+    height: 380px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 2px 3px 0 rgba(0, 0, 0, .1);
+    &.left {
+      width: 51%;
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+      }
+    }
+
+    &.right {
+      width: 49%;
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+      }
+    }
+  }
+}

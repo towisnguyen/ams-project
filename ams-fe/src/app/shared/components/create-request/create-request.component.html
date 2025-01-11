@@ -1,0 +1,130 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<div class="container">
+    <div class="header">
+      <h1>Create Request</h1>
+      <button class="btn-closePopup" (click)="onExitClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+      </button>
+    </div>
+  <div class="body">
+    <div>
+      <body>
+        <div class="testbox">
+          <form action="/" #createRequestForm="ngForm" autocomplete="off">
+
+            <!--Information of asset-->
+            <h2>Information of asset</h2>
+
+            <div class="text-left">
+              <div class="row">
+                  <div class="col-sm item">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" value="{{infoOfAsset?.name}}" disabled/>
+                  </div>
+                  <div class="col-sm item">
+                    <label for="id">ID</label>
+                    <input id="id" type="text" name="id" value="{{infoOfAsset?.id}}" disabled/>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-sm item">
+                    <label for="status">Status</label>
+                    <input id="status" type="text" name="status" value="{{infoOfAsset?.status}}" disabled/>
+                  </div>
+                  <div class="col-sm item">
+                    <label for="owner">Owner</label>
+                    <input id="owner" type="text" name="owner" value="{{infoOfAsset?.ownership}}" disabled/>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-sm item">
+                    <label for="category">Category</label>
+                    <input id="category" type="text" name="category" value="{{infoOfAsset?.category }}" disabled/>
+                  </div>
+                  <div class="col-sm item">
+                    <label for="project">Project</label>
+                    <input id="project" type="text" name="project" value="{{infoOfAsset?.project}}" disabled/>
+                  </div>
+                </div>
+            </div>
+
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+
+            <!--Create form request-->
+            <h2>Request</h2>
+            <div class="week">
+
+              <!--Choose type of request-->
+              <div class="question">
+                <label>Type of request <span style="color: red; margin-left: 4px;">*</span> <a style="color: red;" *ngIf="typeRequired" > Required </a> </label>
+                <div type="text" class="question-answer">
+                  <div>
+                    <input type="radio" value="fix" id="radio_3" name="typeAsset" (click)="chooseTypeRequest('fix')"/>
+                    <label for="radio_3" class="radio"><span>Fix</span></label>
+                  </div>
+                  <div>
+                    <input  type="radio" value="upgrade" id="radio_4" name="typeAsset" (click)="chooseTypeRequest('upgrade')"/>
+                    <label for="radio_4" class="radio"><span>Upgrade</span></label>
+                  </div>
+                  <div>
+                    <input  type="radio" value="transfer" id="radio_5" name="typeAsset" (click)="chooseTypeRequest('transfer')" (click)="getDataOfUsers()"/>
+                    <label for="radio_5" class="radio"><span>Transfer</span></label>
+                  </div>
+                </div>
+
+              </div>
+              <div *ngIf="typeRequest === 'transfer'" style="display: inline-flex;">
+                <div class="transferUser">
+                  <input ngModel id="transfer" type="text" name="transfer" list="listUsers" placeholder="Enter name of receiver">
+                  <datalist id="listUsers">
+                    <span *ngFor="let user of listUserUsernames">
+                      <option>
+                        {{user}}
+                      </option>
+                    </span>
+                  </datalist>
+                </div>
+                <span style="color: red;" class="transferUserRequired"> * </span>
+                <span class="transferUserRequired" *ngIf="transferRequired && createRequestForm.value.transfer===''"> &nbsp; Required </span>
+                <span class="transferUserRequired" *ngIf="transferInvalid"> &nbsp; Receiver is invalid  </span>
+              </div>
+            </div>
+
+            <!--Enter approver-->
+            <div class="item">
+              <label>Approver <span style="color: red;bottom: 0px;"> * </span> <span *ngIf="approverRequired && createRequestForm.value.approver===''" > Required </span> <span class="transferUserRequired" *ngIf="approverInvalid"> Approver is invalid  </span> </label>
+              <input ngModel id="approver" type="text" name="approver" list="listAdmins" placeholder="Enter name of approver" required >
+              <datalist id="listAdmins">
+                <span *ngFor="let admin of listAdminUsernames">
+                  <option>
+                    {{admin}}
+                  </option>
+                </span>
+              </datalist>
+            </div>
+
+            <!--Enter reason-->
+            <div class="item">
+              <label for="reason">Reason</label>
+              <textarea rows="4" ngModel id="reason" type="text" name="reason" placeholder="Enter reason" required></textarea>
+            </div>
+
+            <!--Submit or Cancel-->
+            <div style="display: flex; justify-content: space-evenly; align-items: flex-end;">
+              <div class="btn-block" (click)="onSubmitClick(createRequestForm)" (click)="createRequest(createRequestForm.value)" style="display: inline;">
+                <button class="btn-submit" type="submit" href="/" value="Add" >Submit</button>
+              </div>
+              <div (click)="onExitClick()" style="display: inline;">
+                <button class="btn-cancel">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </body>
+      <mat-divider></mat-divider>
+    </div>
+</div>
+</div>
+

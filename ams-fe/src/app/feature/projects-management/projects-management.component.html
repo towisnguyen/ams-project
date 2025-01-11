@@ -1,0 +1,139 @@
+<h1>Projects Management</h1>
+  <div class="flex justify-end">
+    <mat-form-field appearance="fill">
+      <mat-label>Search Project Name</mat-label>
+        <input
+          matInput
+          #input
+          type="text"
+          name="searchProjectName"
+          placeholder="Enter Project Name..."
+          [(ngModel)]="searchProjectName"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      &nbsp; &nbsp;
+        <mat-form-field appearance="fill">
+          <mat-label>Select Status</mat-label>
+            <mat-select>
+              <mat-option [value]="'AllStatus'"> All Status </mat-option>
+              <mat-option *ngFor="let status of allStatus" [value]="status">{{status}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      &nbsp; &nbsp;
+          <button mat-stroked-button class
+            (click)="searchProject()">Search</button>
+          <button mat-stroked-button class
+            (click)="searchProjectName='';
+            searchProject()">Clear</button>
+  </div>
+<div>
+  <button
+        type="button"
+        class="btn-add"
+        (click)="openAddProjectDialog()"
+      >
+        <mat-icon>add_box</mat-icon>
+    </button>
+</div>
+<div class="flex flex-col overflow-x-auto">
+    <table id="projectTable">
+      <tr>
+        <th class="id" >ID</th>
+        <th class="name" >Project Name</th>
+        <th class="status">Status</th>
+        <th class="description" >Description</th>
+        <th class="action">Action</th>
+      </tr>
+      <tr *ngFor="let project of allProject" >
+        <td>{{ project.id}}</td>
+        <td>{{ project.projectName}}</td>
+        <td>{{ project.status}} </td>
+        <td>{{ project.description }}</td>
+        <td data-label="Actions" class="border text-center">
+          <span *ngIf="currentRole === 'ADMIN'; then enabledAllAction"></span>
+          <span *ngIf="currentRole === 'EDITOR'; then enabledEditorAction"></span>
+          <span *ngIf="currentRole === 'USER'; then enabledUserAction"></span>
+          <ng-template #enabledAllAction>
+            <button [matMenuTriggerFor]="actions">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                />
+              </svg>
+            </button>
+            <mat-menu #actions="matMenu">
+              <button mat-menu-item (click)="openEditProjectDialog(project.id)">Edit</button>
+              <button mat-menu-item (click)="openDeleteProjectDialog(project.id, project.name)">Delete</button>
+            </mat-menu>
+          </ng-template>
+          <ng-template #enabledEditorAction>
+            <button [matMenuTriggerFor]="actions">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                />
+              </svg>
+            </button>
+            <mat-menu #actions="matMenu">
+              <button mat-menu-item (click)="openEditProjectDialog(project.id)">Edit</button>
+              <button mat-menu-item disabled (click)="openDeleteProjectDialog(project.id, project.name)">Delete</button>
+            </mat-menu>
+          </ng-template>
+          <ng-template #enabledUserAction>
+            <button [matMenuTriggerFor]="actions">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                />
+              </svg>
+            </button>
+            <mat-menu #actions="matMenu">
+              <button mat-menu-item disabled (click)="openEditProjectDialog(project.id)">Edit</button>
+              <button mat-menu-item disabled (click)="openDeleteProjectDialog(project.id, project.name)">Delete</button>
+            </mat-menu>
+          </ng-template>
+        </td>
+      </tr>
+    </table>
+    <mat-paginator
+          #paginator
+          *ngIf="totalProject !== 0"
+          (page)="handlePageEvent($event)"
+          [length]="totalProject"
+          [pageSize]="pageSize"
+          [disabled]="disabled"
+          [showFirstLastButtons]="showFirstLastButtons"
+          [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+          [hidePageSize]="hidePageSize"
+          [pageIndex]="pageIndex"
+        >
+      </mat-paginator>
+</div>

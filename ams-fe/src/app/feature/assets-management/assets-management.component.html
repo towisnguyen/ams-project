@@ -1,0 +1,330 @@
+<div class="p-1">
+  <h1>Assets Management</h1>
+
+  <div>
+    <div class="grid grid-cols-5 mb-2.5 gap-x-2.5 groupFilter">
+      <mat-form-field appearance="fill">
+        <mat-label>Type to search</mat-label>
+        <input
+          matInput
+          name="searchName"
+          [(ngModel)]="searchName"
+          (ngModelChange)="applySearch()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select
+          [(ngModel)]="searchStatus"
+          (ngModelChange)="applySearch()"
+        >
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let item of status" [value]="item.name">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Inventory number</mat-label>
+        <input
+          matInput
+          name="searchInventory"
+          [(ngModel)]="searchInventory"
+          (ngModelChange)="applySearch()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>IMEI</mat-label>
+        <input
+          matInput
+          name="searchIMEI"
+          [(ngModel)]="searchIMEI"
+          (ngModelChange)="applySearch()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select
+          [(ngModel)]="searchCategory"
+          (ngModelChange)="applySearch()"
+        >
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let item of categories" [value]="item.name">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Project</mat-label>
+        <mat-select
+          [(ngModel)]="searchProject"
+          (ngModelChange)="applySearch()"
+        >
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let item of projects" [value]="item.projectName">
+            {{ item.projectName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Supplier</mat-label>
+        <mat-select
+          [(ngModel)]="searchSupplier"
+          (ngModelChange)="applySearch()"
+        >
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let item of suppliers" [value]="item.name">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Serial number</mat-label>
+        <input
+          matInput
+          name="searchSerial"
+          [(ngModel)]="searchSerial"
+          (ngModelChange)="applySearch()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ownership</mat-label>
+        <mat-select
+          class="capitalize"
+          [(ngModel)]="searchOwner"
+          (ngModelChange)="applySearch()"
+        >
+          <mat-form-field class="w-full">
+            <input matInput name="searchOwner" />
+          </mat-form-field>
+          <mat-option>-- None --</mat-option>
+          <mat-option
+            *ngFor="let owner of ownerships"
+            [value]="owner.firstName"
+            class="capitalize"
+          >
+            {{ owner.fullName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-1">
+      <span
+        *ngIf="
+          currentRole === 'ADMIN' || currentRole === 'EDITOR';
+          then enabledAction
+        "
+      ></span>
+      <ng-template #enabledAction>
+        <button
+          type="button"
+          class="bg-[#5cb85c] text-white rounded-md mr-1.5 p-1"
+          (click)="addNewAsset()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg></button
+      ></ng-template>
+    </div>
+
+    <div class="flex flex-col overflow-x-auto">
+      <table class="table-fixed">
+        <tr class="text-blue-900 text-base">
+          <th class="border p-1.5">
+            <input type="checkbox" />
+          </th>
+          <th class="border p-1.5">ID</th>
+          <th class="border p-1.5">Name</th>
+          <th class="border p-1.5">Category</th>
+          <th class="border p-1.5">IMEI</th>
+          <th class="border p-1.5">Serial Number</th>
+          <th class="border p-1.5">Inventory Number</th>
+          <th class="border p-1.5">Status</th>
+          <th class="border p-1.5">Owner</th>
+          <th class="border p-1.5">Current User</th>
+          <th class="border p-1.5">Project</th>
+          <th class="border p-1.5">Supplier</th>
+          <th class="border p-1.5">Comment</th>
+          <th class="border p-1.5">Actions</th>
+        </tr>
+
+        <tr *ngFor="let asset of allAssets">
+          <td data-label="Checkbox" class="border text-center">
+            <input type="checkbox" />
+          </td>
+
+          <td data-label="ID" class="border">{{ asset.id }}</td>
+          <td data-label="Name" class="border text-blue-800 cursor-pointer">
+            <u (click)="viewDetails(asset.id, asset.name)">
+              {{ asset.name }}
+            </u>
+          </td>
+          <td data-label="Category" class="border">{{ asset.categoryName }}</td>
+          <td data-label="IMEI" class="border">{{ asset.imei }}</td>
+          <td data-label="Serial Number" class="border">
+            {{ asset.serialNumber }}
+          </td>
+          <td data-label="Inventory Number" class="border">
+            {{ asset.inventoryNumber }}
+          </td>
+          <td data-label="Status" class="border">{{ asset.statusName }}</td>
+          <td data-label="Current Owner" class="border capitalize">
+            {{ asset.ownership }}
+          </td>
+          <td data-label="Current Owner" class="border capitalize">
+            {{ asset.useEmail }}
+          </td>
+          <td data-label="Project" class="border">{{ asset.projectName }}</td>
+          <td data-label="Supplier" class="border">{{ asset.supplierName }}</td>
+          <td data-label="Comments" class="border">{{ asset.comments }}</td>
+          <td data-label="Actions" class="border text-center">
+            <span *ngIf="currentRole === 'ADMIN'; then enabledAllAction"></span>
+            <span
+              *ngIf="currentRole === 'EDITOR'; then enabledEditorAction"
+            ></span>
+            <span *ngIf="currentRole === 'USER'; then enabledUserAction"></span>
+            <ng-template #enabledAllAction>
+              <button [matMenuTriggerFor]="actions">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                  />
+                </svg>
+              </button>
+
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="editAsset(asset.id)">
+                  Edit
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="removeAsset(asset.id, asset.name)"
+                >
+                  Delete
+                </button>
+                <button mat-menu-item (click)="createRequest(asset.id)">
+                  Request
+                </button>
+              </mat-menu>
+            </ng-template>
+            <ng-template #enabledEditorAction>
+              <button [matMenuTriggerFor]="actions">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                  />
+                </svg>
+              </button>
+
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="editAsset(asset.id)">
+                  Edit
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="removeAsset(asset.id, asset.name)"
+                  disabled
+                >
+                  Delete
+                </button>
+                <button mat-menu-item (click)="createRequest(asset.id)">
+                  Request
+                </button>
+              </mat-menu>
+            </ng-template>
+            <ng-template #enabledUserAction>
+              <button [matMenuTriggerFor]="actions">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                  />
+                </svg>
+              </button>
+
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="editAsset(asset.id)" disabled>
+                  Edit
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="removeAsset(asset.id, asset.name)"
+                  disabled
+                >
+                  Delete
+                </button>
+                <button mat-menu-item (click)="createRequest(asset.id)">
+                  Request
+                </button>
+              </mat-menu>
+            </ng-template>
+          </td>
+        </tr>
+      </table>
+
+      <h3 *ngIf="totalAssets === 0" class="text-center text-red-800">
+        There are no assets matching your search
+      </h3>
+
+      <mat-paginator
+        #paginator
+        *ngIf="totalAssets !== 0"
+        (page)="handlePageEvent($event)"
+        [length]="totalAssets"
+        [pageSize]="pageSize"
+        [disabled]="disabled"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+        [hidePageSize]="hidePageSize"
+        [pageIndex]="pageIndex"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

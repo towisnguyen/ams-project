@@ -1,0 +1,986 @@
+<div class="flex">
+  <div
+    [ngClass]="[
+      'border-r-2',
+      'h-screen',
+      'pt-8',
+      isOpened ? 'w-72' : 'w-10',
+      'duration-300',
+      'relative'
+    ]"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewbox="0 0 24 24"
+      strokewidth="{1.5}"
+      stroke="currentColor"
+      [ngClass]="[
+        'bg-white',
+        'text-dark-purple',
+        'text-3xl',
+        'w-6',
+        'h-6',
+        'rounded-full',
+        'absolute',
+        '-right-3',
+        'top-9',
+        'border',
+        'border-dark-purple',
+        'cursor-pointer',
+        'hover:bg-blue-600',
+        isOpened ? 'rotate-180' : ''
+      ]"
+      (click)="openLeftSide()"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+      />
+    </svg>
+    <!-- AMS TAB Device -->
+
+    <div id="showAMS" class="showSidebar" style="display: none">
+      <div class="inline-flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewbox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          [ngClass]="[
+            'w-6',
+            'h-6',
+            'text-4xl',
+            'duration-300',
+            'rounded',
+            'cursor-pointer',
+            'block',
+            'float-left',
+            'mr-2',
+            !isOpened ? 'rotate-[360deg]' : ''
+          ]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"
+          />
+        </svg>
+        <h1
+          [ngClass]="[
+            'text-black',
+            'origin-left',
+            'font-medium',
+            'text-2xl',
+            'duration-300',
+            !isOpened ? 'scale-0' : ''
+          ]"
+        ></h1>
+      </div>
+      <div
+        [ngClass]="[
+          'flex',
+          'items-center',
+          'rounded-md',
+          'bg-white',
+          !isOpened ? 'px-2.5' : 'px-4'
+        ]"
+      >
+        <mat-icon
+          [ngClass]="[
+            'text-black',
+            'text-lg',
+            'block',
+            'float-left',
+            'cursor-pointer',
+            isOpened ? 'mr-2' : ''
+          ]"
+          >search</mat-icon
+        >
+        <input
+          type="search"
+          placeholder="Search"
+          [ngClass]="[
+            'text-base',
+            'bg-transparent',
+            'w-full',
+            'text-black',
+            'focus:outline-none',
+            !isOpened ? 'hidden' : ''
+          ]"
+        />
+      </div>
+      <!-- Asset -->
+
+      <!-- All Assets -->
+
+      <li
+        id="All Assets"
+        key=""
+        class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 focus:bg-red rounded-md mt-1 myTabSelectSideBar"
+        (click)="navToPath('All Assets')"
+      >
+        <span class="text-2xl block float-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewbox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"
+            />
+          </svg>
+        </span>
+
+        <span
+          [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+          (click)="navToPath('All Assets')"
+          >All Assets</span
+        >
+      </li>
+      <!-- Create New Asset -->
+      <li
+        *ngIf="currentRole === 'ADMIN' || currentRole === 'EDITOR'"
+        id="Create New Asset"
+        key=""
+        class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 focus:bg-red rounded-md mt-1 myTabSelectSideBar"
+        (click)="navToPath('Create New Assets')"
+      >
+        <span class="text-2xl block float-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewbox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </span>
+        <span
+          (click)="navToPath('Create New Assets')"
+          [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+          >Create New Assets</span
+        >
+      </li>
+      <!-- Sub Menu -->
+      <ul claa="pt-2">
+        <li
+          id="Sub Items"
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 focus:bg-red rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('Sub Items')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"
+              />
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"
+              />
+            </svg>
+          </span>
+          <span
+            (click)="navToPath('Sub Items')"
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Sub Items</span
+          >
+          <div *ngFor="let item of items">
+            <div *ngIf="item.subMenu" [ngClass]="[!isOpened ? 'hidden' : '']">
+              <mat-icon
+                [ngClass]="['mt-1', isSubMenuOpened ? 'rotate-180' : '']"
+                (click)="openSubMenu()"
+                >keyboard_arrow_down</mat-icon
+              >
+            </div>
+          </div>
+        </li>
+        <div *ngFor="let item of items">
+          <div *ngIf="item.subMenu && isSubMenuOpened && isOpened">
+            <ul *ngFor="let sub of item.submenuItems" class="flex">
+              <li
+                class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 focus:bg-red rounded-md mt-1 ml-5"
+              >
+                {{ sub.title }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ul>
+      <!-- End Asset -->
+    </div>
+    <!-- Home Tab  -->
+    <div id="showHome" class="showSidebar" style="display: block">
+      <div class="inline-flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewbox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          [ngClass]="[
+            'w-6',
+            'h-6',
+            'text-4xl',
+            'duration-300',
+            'rounded',
+            'cursor-pointer',
+            'block',
+            'float-left',
+            'mr-2',
+            !isOpened ? 'rotate-[360deg]' : ''
+          ]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+          />
+        </svg>
+        <h1
+          [ngClass]="[
+            'text-black',
+            'origin-left',
+            'font-medium',
+            'text-2xl',
+            'duration-300',
+            !isOpened ? 'scale-0' : ''
+          ]"
+        ></h1>
+      </div>
+      <div
+        [ngClass]="[
+          'flex',
+          'items-center',
+          'rounded-md',
+          'bg-white',
+          !isOpened ? 'px-2.5' : 'px-4'
+        ]"
+      >
+        <mat-icon
+          [ngClass]="[
+            'text-black',
+            'text-lg',
+            'block',
+            'float-left',
+            'cursor-pointer',
+            isOpened ? 'mr-2' : ''
+          ]"
+          >search</mat-icon
+        >
+        <input
+          type="search"
+          placeholder="Search"
+          [ngClass]="[
+            'text-base',
+            'bg-transparent',
+            'w-full',
+            'text-black',
+            'focus:outline-none',
+            !isOpened ? 'hidden' : ''
+          ]"
+        />
+      </div>
+      <ul>
+        <li
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1"
+          (click)="navToPath('All Dashboard')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Dashboard</span
+          >
+        </li>
+        <li
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1"
+          (click)="navToPath('All Assets')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >All Assets</span
+          >
+        </li>
+        <li
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1"
+          (click)="navToPath('All Requests')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >All Requests</span
+          >
+        </li>
+        <li
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1"
+          (click)="navToPath('All Users')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >All Users</span
+          >
+        </li>
+        <li
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1"
+          (click)="navToPath('Create New Request')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Create New Request</span
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- Dashboard Tab -->
+    <div id="showDash" class="showSidebar" style="display: none">
+      <div class="inline-flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewbox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          [ngClass]="[
+            'w-6',
+            'h-6',
+            'text-4xl',
+            'duration-300',
+            'rounded',
+            'cursor-pointer',
+            'block',
+            'float-left',
+            'mr-2',
+            !isOpened ? 'rotate-[360deg]' : ''
+          ]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+          />
+        </svg>
+        <h1
+          [ngClass]="[
+            'text-black',
+            'origin-left',
+            'font-medium',
+            'text-2xl',
+            'duration-300',
+            !isOpened ? 'scale-0' : ''
+          ]"
+        ></h1>
+      </div>
+      <div
+        [ngClass]="[
+          'flex',
+          'items-center',
+          'rounded-md',
+          'bg-white',
+          'pl-2',
+          !isOpened ? 'px-2.5' : 'px-4'
+        ]"
+      >
+        <mat-icon
+          [ngClass]="[
+            'text-black',
+            'text-lg',
+            'block',
+            'float-left',
+            'cursor-pointer',
+            isOpened ? 'mr-2' : ''
+          ]"
+          >search</mat-icon
+        >
+        <input
+          type="search"
+          placeholder="Search"
+          [ngClass]="[
+            'text-base',
+            'bg-transparent',
+            'w-full',
+            'text-black',
+            'focus:outline-none',
+            !isOpened ? 'hidden' : ''
+          ]"
+        />
+      </div>
+      <ul>
+        <li
+          key=""
+          [ngClass]="[
+            'text-black',
+            'text-sm',
+            'flex',
+            'items-center',
+            'gap-x-4',
+            'cursor-pointer',
+            'p-2',
+            'hover:bg-gray-400',
+            'rounded-md mt-1',
+            'myTabSelectSideBar'
+          ]"
+          id="All Dashboard"
+          (click)="navToPath('All Dashboard')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >All Dashboard</span
+          >
+        </li>
+        <li
+          key=""
+          [ngClass]="[
+            'text-black',
+            'text-sm',
+            'flex',
+            'items-center',
+            'gap-x-4',
+            'cursor-pointer',
+            'p-2',
+            'hover:bg-gray-400',
+            'rounded-md mt-1',
+            'myTabSelectSideBar'
+          ]"
+          id="Assets Dashboard"
+          (click)="navToPath('Assets Dashboard')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Assets Dashboard</span
+          >
+        </li>
+        <li
+          [ngClass]="[
+            'text-black',
+            'text-sm',
+            'flex',
+            'items-center',
+            'gap-x-4',
+            'cursor-pointer',
+            'p-2',
+            'hover:bg-gray-400',
+            'rounded-md mt-1',
+            'myTabSelectSideBar'
+          ]"
+          id="Projects Dashboard"
+          (click)="navToPath('Projects Dashboard')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Projects Dashboard</span
+          >
+        </li>
+        <li
+          key=""
+          [ngClass]="[
+            'text-black',
+            'text-sm',
+            'flex',
+            'items-center',
+            'gap-x-4',
+            'cursor-pointer',
+            'p-2',
+            'hover:bg-gray-400',
+            'rounded-md mt-1',
+            'myTabSelectSideBar'
+          ]"
+          id="New Dashboard"
+          (click)="navToPath('New Dashboard')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >New Dashboard</span
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- User Management  -->
+    <div id="showUsers" class="showSidebar" style="display: none">
+      <div class="inline-flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewbox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          [ngClass]="[
+            'w-6',
+            'h-6',
+            'text-4xl',
+            'duration-300',
+            'rounded',
+            'cursor-pointer',
+            'block',
+            'float-left',
+            'mr-2',
+            !isOpened ? 'rotate-[360deg]' : ''
+          ]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+        <h1
+          [ngClass]="[
+            'text-black',
+            'origin-left',
+            'font-medium',
+            'text-2xl',
+            'duration-300',
+            !isOpened ? 'scale-0' : ''
+          ]"
+        ></h1>
+      </div>
+      <div
+        [ngClass]="[
+          'flex',
+          'items-center',
+          'rounded-md',
+          'bg-white',
+          !isOpened ? 'px-2.5' : 'px-4'
+        ]"
+      >
+        <mat-icon
+          [ngClass]="[
+            'text-black',
+            'text-lg',
+            'block',
+            'float-left',
+            'cursor-pointer',
+            isOpened ? 'mr-2' : ''
+          ]"
+          >search</mat-icon
+        >
+        <input
+          type="search"
+          placeholder="Search"
+          [ngClass]="[
+            'text-base',
+            'bg-transparent',
+            'w-full',
+            'text-black',
+            'focus:outline-none',
+            !isOpened ? 'hidden' : ''
+          ]"
+        />
+      </div>
+      <ul>
+        <li
+          id="All Users"
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('All Users')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            (click)="navToPath('All Users')"
+            >All Users</span
+          >
+        </li>
+        <li
+          id="All Roles"
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('All Roles')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >All Roles</span
+          >
+        </li>
+        <li
+          *ngIf="currentRole === 'ADMIN' || currentRole === 'EDITOR'"
+          id="Create New User"
+          key=""
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('Create New User')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Create New User</span
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- Request -->
+    <div id="showRequests" class="showSidebar" style="display: none">
+      <div class="inline-flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewbox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          [ngClass]="[
+            'w-6',
+            'h-6',
+            'text-4xl',
+            'duration-300',
+            'rounded',
+            'cursor-pointer',
+            'block',
+            'float-left',
+            'mr-2',
+            !isOpened ? 'rotate-[360deg]' : ''
+          ]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"
+          />
+        </svg>
+        <h1
+          [ngClass]="[
+            'text-black',
+            'origin-left',
+            'font-medium',
+            'text-2xl',
+            'duration-300',
+            !isOpened ? 'scale-0' : ''
+          ]"
+        ></h1>
+      </div>
+      <div
+        [ngClass]="[
+          'flex',
+          'items-center',
+          'rounded-md',
+          'bg-white',
+          !isOpened ? 'px-2.5' : 'px-4'
+        ]"
+      >
+        <mat-icon
+          [ngClass]="[
+            'text-black',
+            'text-lg',
+            'block',
+            'float-left',
+            'cursor-pointer',
+            isOpened ? 'mr-2' : ''
+          ]"
+          >search</mat-icon
+        >
+        <input
+          type="search"
+          placeholder="Search"
+          [ngClass]="[
+            'text-base',
+            'bg-transparent',
+            'w-full',
+            'text-black',
+            'focus:outline-none',
+            !isOpened ? 'hidden' : ''
+          ]"
+        />
+      </div>
+      <ul>
+        <li
+          key=""
+          id="All Requests"
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('All Requests')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewbox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1.5 6.375c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v3.026a.75.75 0 01-.375.65 2.249 2.249 0 000 3.898.75.75 0 01.375.65v3.026c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 17.625v-3.026a.75.75 0 01.374-.65 2.249 2.249 0 000-3.898.75.75 0 01-.374-.65V6.375zm15-1.125a.75.75 0 01.75.75v.75a.75.75 0 01-1.5 0V6a.75.75 0 01.75-.75zm.75 4.5a.75.75 0 00-1.5 0v.75a.75.75 0 001.5 0v-.75zm-.75 3a.75.75 0 01.75.75v.75a.75.75 0 01-1.5 0v-.75a.75.75 0 01.75-.75zm.75 4.5a.75.75 0 00-1.5 0V18a.75.75 0 001.5 0v-.75zM6 12a.75.75 0 01.75-.75H12a.75.75 0 010 1.5H6.75A.75.75 0 016 12zm.75 2.25a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            (click)="navToPath('All Requests')"
+            >All Requests</span
+          >
+        </li>
+        <li
+          id="Approved"
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('Approved')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Approved</span
+          >
+        </li>
+        <li
+          key=""
+          id="Closed"
+          class="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-400 rounded-md mt-1 myTabSelectSideBar"
+          (click)="navToPath('Closed')"
+        >
+          <span class="text-2xl block float-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+              />
+            </svg>
+          </span>
+          <span
+            [ngClass]="['text-base', 'font-medium', !isOpened ? 'hidden' : '']"
+            >Closed</span
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

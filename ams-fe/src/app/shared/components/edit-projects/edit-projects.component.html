@@ -1,0 +1,99 @@
+<div class="flex justify-between">
+  <h1 class="title">Edit Projects</h1>
+  <button (click)="closeForm()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6 mr-2.5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+</div>
+<div>
+  <form [formGroup]="editProjectsForm" (ngSubmit)="editProjects(editProjectsForm)">
+    <div class="my-2.5 mx-5">
+      <div class="form-group grid grid-cols-6">
+        <mat-label>
+          Name
+          <small class="text-red-600">*</small>
+          <small
+            [hidden]="!editProjectsForm.get('projectName').touched"
+            *ngIf="editProjectsForm.get('projectName').invalid"
+          >
+            Required
+          </small>
+        </mat-label>
+        <input
+        matInput
+        required
+        formControlName="projectName"
+        [ngClass]="{
+          'is-invalid': submitted && editProjectsForm.get('projectName').errors
+        }"
+        type="text"
+        name="projectName"
+        >
+      </div>
+
+      <div class="form-group grid grid-cols-6">
+        <mat-label>
+          Description
+          <small class="text-red-600">*</small>
+          <small
+            [hidden]="!editProjectsForm.get('description').touched"
+            *ngIf="editProjectsForm.get('description').invalid"
+          >
+            Required
+          </small>
+        </mat-label>
+        <input
+        matInput
+        required
+        formControlName="description"
+        [ngClass]="{
+          'is-invalid': submitted && editProjectsForm.get('description').errors
+        }"
+        type="text"
+        name="description"
+        >
+      </div>
+
+      <div class="form-group grid grid-cols-6">
+        <mat-label>
+          Status
+          <small class="text-red-600">*</small>
+          <small
+            [hidden]="!editProjectsForm.get('status').touched"
+            *ngIf="editProjectsForm.get('status').invalid"
+          >
+            Required
+          </small>
+        </mat-label>
+        <input
+          matInput
+          required
+          formControlName="status"
+          [ngClass]="{
+            'is-invalid': submitted && editProjectsForm.get('status').errors
+          }"
+          type="text"
+          name="status"
+        >
+      </div>
+      <div class="form-group flex justify-end mx-4">
+        <button class="bg-[#5cb85c] text-white rounded-md py-2 px-3">
+          Edit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+

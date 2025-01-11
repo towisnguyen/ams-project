@@ -1,0 +1,114 @@
+<div class="body">
+  <div class="item">
+    <div class="img">
+      <img src="../../../../../assets/images/computer.jpg" alt="" />
+    </div>
+    <div class="commonInfo">
+      <div class="layoutCommonInfo">
+        <h2 class="name">Name:</h2>
+        <h3 class="valueName">{{ fullData?.name }}</h3>
+
+        <h2 class="ID">ID:</h2>
+        <h3 class="valueID">{{ fullData?.id }}</h3>
+
+        <h2 class="status">Status:</h2>
+        <h3 class="valueStatus">{{ fullData?.statusName }}</h3>
+        <div *ngIf="fullData?.statusName === 'In Use'">
+          <button class="button-status-inUse"></button>
+        </div>
+        <div *ngIf="fullData?.statusName === 'Broken'">
+          <button class="button-status-broken"></button>
+        </div>
+
+        <h2 class="owner">Owner:</h2>
+        <h3 class="valueOnwer">{{ fullData?.ownership }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <table>
+      <tbody>
+        <!--Id-->
+        <tr>
+          <th style="width: 150px">Id</th>
+          <td>
+            {{ fullData?.id }}
+          </td>
+        </tr>
+
+        <!--Category-->
+        <tr>
+          <th style="width: 150px">Category</th>
+          <td>
+            {{ fullData?.categoryName }}
+          </td>
+        </tr>
+
+        <!--Comment-->
+        <tr>
+          <th style="width: 150px">Comments</th>
+          <td>
+            {{ fullData?.comments }}
+          </td>
+        </tr>
+
+        <!--Imei-->
+        <tr>
+          <th style="width: 150px">IMEI</th>
+          <td>
+            {{ fullData?.imei }}
+          </td>
+        </tr>
+
+        <!--Inventory Number-->
+        <tr>
+          <th style="width: 150px">Inventory Number</th>
+          <td>
+            {{ fullData?.inventoryNumber }}
+          </td>
+        </tr>
+
+        <!--Project Id-->
+        <tr>
+          <th style="width: 150px">Project Name</th>
+          <td>
+            {{ fullData?.projectName }}
+          </td>
+        </tr>
+
+        <!--Serial Number-->
+        <tr>
+          <th style="width: 150px">Serial Number</th>
+          <td>
+            {{ fullData?.serialNumber }}
+          </td>
+        </tr>
+
+        <!--Supplier Id-->
+        <tr>
+          <th style="width: 150px">Supplier Name</th>
+          <td>
+            {{ fullData?.supplierName }}
+          </td>
+        </tr>
+
+        <!--User Id-->
+        <tr>
+          <th style="width: 150px">User Email</th>
+          <td>
+            {{ fullData?.useEmail }}
+          </td>
+        </tr>
+
+        <!--Owner-->
+        <tr>
+          <th style="width: 150px">Owner</th>
+          <td>
+            {{ fullData?.ownership }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

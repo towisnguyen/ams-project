@@ -1,0 +1,46 @@
+.container {
+  padding: 10px;
+}
+
+.groupBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.groupBtn button {
+  margin: 0px 5px;
+}
+
+.btn-confirm {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.btn-cancel {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}

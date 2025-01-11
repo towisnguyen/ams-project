@@ -1,0 +1,331 @@
+<div class="max-w-full p-1">
+  <div class="flex justify-end">
+    <div class="grid grid-cols-5 mb-2.5 gap-x-2.5 groupFilter">
+      <mat-form-field appearance="fill">
+        <mat-label>Search Asset Name</mat-label>
+        <input
+          matInput
+          #input
+          type="text"
+          name="search"
+          placeholder="Enter Asset Name..."
+          [(ngModel)]="selectedSearch"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Search Inventory Asset Number</mat-label>
+        <input
+          matInput
+          #input
+          type="text"
+          name="search"
+          placeholder="Enter deivce..."
+          [(ngModel)]="selectedDevice"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select status</mat-label>
+        <mat-select
+          (selectionChange)="
+            getAllRequestByFilter(
+              selectedSearch,
+              selectedDevice,
+              selectedStatus,
+              selectedType
+            )
+          "
+          [(ngModel)]="selectedStatus"
+        >
+          <mat-option [value]="'All'"> All </mat-option>
+          <mat-option *ngFor="let status of statuses" [value]="status">{{
+            status
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select type</mat-label>
+        <mat-select
+          (selectionChange)="
+            getAllRequestByFilter(
+              selectedSearch,
+              selectedDevice,
+              selectedStatus,
+              selectedType
+            )
+          "
+          [(ngModel)]="selectedType"
+        >
+        <mat-option [value]="'All'"> All </mat-option>
+          <mat-option *ngFor="let type of types" [value]="type">{{
+            type
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="grid grid-cols-2">
+        <button
+          (click)="
+            getAllRequestByFilter(
+              selectedSearch,
+              selectedDevice,
+              selectedStatus,
+              selectedType
+            )
+          "
+          class="ml-2 btnfilter"
+        >
+          Search
+        </button>
+
+        <button
+          (click)="
+            selectedSearch = '';
+            selectedDevice = '';
+            getAllRequestByFilter(
+              selectedSearch,
+              selectedDevice,
+              selectedStatus,
+              selectedType
+            )
+          "
+          class="ml-2 btnfilter"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <h1>Request Management</h1>
+  <div *ngIf="isAdmin()">
+    <div class="mb-2.5">
+      <button
+        type="button"
+        class="bg-[#d9534f] text-white rounded-md mr-1.5 p-1.5"
+        (click)="closeRequest()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+          />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="bg-[#f0ad4e] text-white rounded-md mr-1.5 p-1.5"
+        (click)="reopenRequest()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+          />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="bg-[#5cb85c] text-white rounded-md mr-1.5 p-1.5"
+        (click)="approveRequest()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="bg-[#594ef0] text-white rounded-md mr-1.5 p-1.5"
+        (click)="rejectRequest()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col overflow-x-auto">
+    <table id="customers">
+      <tr>
+        <th>Select</th>
+        <th *ngFor="let item of datakey">
+          <span>
+            {{ item }}
+          </span>
+        </th>
+        <th *ngIf="isAdmin()">Action</th>
+      </tr>
+      <tr
+        *ngFor="let request of data"
+        (dblclick)="selectRequest($event, request)"
+      >
+        <td>
+          <label class="ckb_container">
+            <input
+              type="checkbox"
+              class="mycheck"
+              (change)="selectRequest($event, request)"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </td>
+        <td>
+          {{ request["id"] }}
+        </td>
+        <td class="border text-blue-800 cursor-pointer">
+          <u
+            (click)="
+              openAssetDetailsDialog(request['assetId'], request['assetName'])
+            "
+          >
+            {{ request["assetName"] }}
+          </u>
+        </td>
+        <td>
+          {{ request["inventoryAssetNumber"] }}
+        </td>
+        <td>
+          {{ request["requestType"] | titlecase }}
+        </td>
+        <td>
+          <a *ngIf="request['requestType'] === 'transfer'">
+            <span
+              class="text-blue-800 cursor-pointer"
+              (click)="openUserDetailsDialog(request['sendUserID'])"
+              >{{ request["sendUserName"] }}
+            </span>
+            raise request : Transfer to user :
+            <span
+              (click)="openUserDetailsDialog(request['receiveUserID'])"
+              class="text-blue-800 cursor-pointer"
+            >
+              {{ request["receiveUserName"] }}
+            </span>
+          </a>
+          <a *ngIf="request['requestType'] !== 'transfer'">
+            <span
+              class="text-blue-800 cursor-pointer"
+              (click)="openUserDetailsDialog(request['sendUserID'])"
+            >
+              {{ request["sendUserName"] }}
+            </span>
+            raise request
+          </a>
+        </td>
+        <td>
+          {{ request["reason"] }}
+        </td>
+        <td>
+          {{ request["status"] | titlecase }}
+        </td>
+        <td>
+          {{ request["updateAt"] }}
+        </td>
+        <td *ngIf="isAdmin()">
+          <button [matMenuTriggerFor]="actions">
+            <mat-icon fontIcon="more_vert"></mat-icon>
+          </button>
+
+          <mat-menu #actions="matMenu">
+            <button
+              mat-menu-item
+              (click)="reopenRequest(request.id)"
+              *ngIf="request.status.toLowerCase() === 'closed'"
+            >
+              Reopen
+            </button>
+            <button
+              mat-menu-item
+              (click)="
+                approveRequest(
+                  request.id,
+                  request.assetId,
+                  request.receiveUserID
+                )
+              "
+              *ngIf="
+                request.status.toLowerCase() !== 'closed' &&
+                request.status.toLowerCase() !== 'approved' &&
+                request.approveUserID === currentUserId
+              "
+            >
+              Approve
+            </button>
+            <button
+              mat-menu-item
+              (click)="rejectRequest(request.id)"
+              *ngIf="
+                request.status.toLowerCase() !== 'closed' &&
+                request.status.toLowerCase() !== 'rejected' &&
+                request.approveUserID === currentUserId
+              "
+            >
+              Reject
+            </button>
+            <button
+              mat-menu-item
+              (click)="closeRequest(request.id)"
+              *ngIf="request.status.toLowerCase() !== 'closed'"
+            >
+              Close
+            </button>
+          </mat-menu>
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>

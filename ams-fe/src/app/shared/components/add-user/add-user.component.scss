@@ -1,0 +1,66 @@
+.container-add-user {
+  border-radius: 5px;
+  padding: 10px 25px 10px 25px;
+}
+
+.container-add-user h1 {
+  text-align: center;
+}
+
+.all-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  height: 40px;
+}
+
+.close-btn {
+  float: right;
+  top: -24px;
+  right: -24px;
+  border: white;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.close-btn:hover {
+  background-color: rgb(139, 139, 139);
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.invalid-field {
+  color: red;
+}
+
+.avatar{
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  border-width: 2px;
+}

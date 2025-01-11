@@ -1,0 +1,330 @@
+<div class="p-1">
+  <h1>Users Management</h1>
+
+  <div>
+    <!-- Filter / Search -->
+    <div class="flex justify-end">
+      <div class="grid grid-cols-3 mb-2.5 gap-x-2.5 groupFilter">
+        <mat-form-field appearance="fill">
+          <mat-label>Search username</mat-label>
+          <input
+            matInput
+            #input
+            type="text"
+            name="search"
+            placeholder="Enter username..."
+            [(ngModel)]="searchKey"
+            (ngModelChange)="applySearch()"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Select status</mat-label>
+          <mat-select
+            (selectionChange)="applySearch()"
+            [(ngModel)]="searchStatus"
+            ><mat-option>--None--</mat-option>
+            <mat-option
+              *ngFor="let status of allStatus"
+              [value]="status.status"
+              >{{ status.status }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select
+            [(ngModel)]="searchRole"
+            (selectionChange)="applySearch()"
+            placeholder="Select role"
+            multiple
+          >
+            <mat-option
+              *ngFor="let role of allRole; index as i"
+              [value]="role.name"
+              >{{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- End Filter / Search -->
+
+    <!-- Add User -->
+    <div class="flex justify-between mb-1">
+      <div>
+        <span
+          *ngIf="
+            currentRole === 'ADMIN' || currentRole === 'EDITOR';
+            then enabledAction
+          "
+        ></span>
+        <ng-template #enabledAction>
+          <button
+            type="button"
+            class="bg-[#5cb85c] text-white rounded-md mr-1.5 p-1"
+            mat-raised-button
+            (click)="openAddUserDialog()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </button>
+        </ng-template>
+      </div>
+      <!-- End Add User -->
+
+      <!-- Filter Column Users -->
+      <div class="mt-auto">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+            />
+          </svg>
+        </button>
+
+        <form [formGroup]="form">
+          <mat-menu #menu="matMenu">
+            <div
+              class="filter-board columns-2"
+              (click)="$event.stopPropagation()"
+            >
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[0].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[1].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[3].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[4].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[5].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[12].label }}
+              </mat-checkbox>
+              <mat-checkbox checked disabled>
+                {{ columnDefinitions[13].label }}
+              </mat-checkbox>
+
+              <mat-checkbox [formControlName]="columnDefinitions[2].def">{{
+                columnDefinitions[2].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[6].def">{{
+                columnDefinitions[6].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[7].def">{{
+                columnDefinitions[7].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[8].def">{{
+                columnDefinitions[8].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[9].def">{{
+                columnDefinitions[9].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[10].def">{{
+                columnDefinitions[10].label
+              }}</mat-checkbox>
+              <mat-checkbox [formControlName]="columnDefinitions[11].def">
+                {{ columnDefinitions[11].label }}</mat-checkbox
+              >
+            </div>
+            <div class="filter-board-btn">
+              <button class="apply-btn" (click)="onApplyFilter()">Apply</button>
+              <button class="cancel-btn" type="cancel">Cancel</button>
+            </div>
+          </mat-menu>
+        </form>
+      </div>
+      <!-- End Filter Column Users -->
+    </div>
+
+    <!-- Table -->
+    <div class="flex flex-col overflow-x-auto">
+      <table class="table-fixed">
+        <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+          <ng-container matColumnDef="userID">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.id }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+            <mat-cell
+              class="text-blue-800 cursor-pointer"
+              *matCellDef="let user"
+              (click)="openDetailsDialog(user?.id)"
+              ><u>{{ user.username }}</u></mat-cell
+            >
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="firstname">
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="lastname">
+            <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fullname">
+            <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.fullName }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dob">
+            <mat-header-cell *matHeaderCellDef>D.O.B</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.birthDate }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="gender">
+            <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.gender }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.address }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.role }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="avatar">
+            <mat-header-cell *matHeaderCellDef>Avatar</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.avatar }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.status }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <span
+                *ngIf="currentRole === 'ADMIN'; then enabledAllAction"
+              ></span>
+              <span
+                *ngIf="currentRole === 'EDITOR'; then enabledEditorAction"
+              ></span>
+              <span
+                *ngIf="currentRole === 'USER'; then disabledAllAction"
+              ></span>
+              <ng-template #enabledAllAction>
+                <button [matMenuTriggerFor]="actions">
+                  <mat-icon fontIcon="more_vert"></mat-icon>
+                </button>
+
+                <mat-menu #actions="matMenu">
+                  <button mat-menu-item (click)="onEditSelectedUser(row.id)">
+                    Edit
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="openDeleteUserDialog(row.id, row.username)"
+                  >
+                    Delete
+                  </button>
+                </mat-menu>
+              </ng-template>
+              <ng-template #enabledEditorAction>
+                <button [matMenuTriggerFor]="actions">
+                  <mat-icon fontIcon="more_vert"></mat-icon>
+                </button>
+
+                <mat-menu #actions="matMenu">
+                  <button mat-menu-item (click)="onEditSelectedUser(row.id)">
+                    Edit
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="openDeleteUserDialog(row.id, row.username)"
+                    disabled
+                  >
+                    Delete
+                  </button>
+                </mat-menu>
+              </ng-template>
+              <ng-template #disabledAllAction>
+                <button [matMenuTriggerFor]="actions">
+                  <mat-icon fontIcon="more_vert"></mat-icon>
+                </button>
+
+                <mat-menu #actions="matMenu">
+                  <button
+                    mat-menu-item
+                    (click)="onEditSelectedUser(row.id)"
+                    disabled
+                  >
+                    Edit
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="openDeleteUserDialog(row.id, row.username)"
+                    disabled
+                  >
+                    Delete
+                  </button>
+                </mat-menu>
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columns"> </mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns"></mat-row>
+        </mat-table>
+      </table>
+
+      <!-- Pagination -->
+      <mat-paginator
+        #paginator
+        class="users-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [disabled]="disabled"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+        [hidePageSize]="hidePageSize"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+      <!-- End Pagination -->
+    </div>
+    <!-- End Table -->
+  </div>
+</div>

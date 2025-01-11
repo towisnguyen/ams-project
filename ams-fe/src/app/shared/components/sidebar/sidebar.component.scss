@@ -1,0 +1,66 @@
+.option_menu {
+  border-radius: 10px;
+}
+
+:host {
+  .img {
+    vertical-align: middle;
+    margin-right: 20px;
+  }
+  .profile-card {
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}
+
+.tab {
+  overflow: hidden;
+  border: 0px solid transparent;
+  background-color: transparent;
+}
+
+.tab a {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab a:hover {
+  background-color: #7575759d;
+  img, span {
+    color: white;
+  }
+}
+
+.tab a.active {
+  background-color: #757575;
+  img, span {
+    color: white;
+  }
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  vertical-align: bottom;
+  color: black;
+  background: transparent;
+}

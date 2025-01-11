@@ -1,0 +1,212 @@
+.item {
+  height: 100%;
+  border-style: hidden;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.commonInfo {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 100%;
+  overflow: hidden;
+  padding: 15px;
+}
+
+table {
+  border: 1px solid rgba(0, 0, 0, 0.514);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  width: fit-content;
+  width: 150px;
+}
+
+tr {
+  height: 45px;
+}
+
+tr:nth-child(even) {
+  background-color: #d6eeee;
+}
+
+button {
+  background: #45d96a;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+.buttonActive {
+  background: #45d96a;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.buttonDeactive {
+  background: #d94545;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+th[_ngcontent-bdo-c51] {
+  text-align: left;
+  padding: 8px;
+}
+
+.layoutCommonInfo {
+  display: grid;
+  grid-template-columns: 45% 45% 5%;
+  grid-template-rows: 20% 20% 20% 20%;
+  grid-template-areas:
+    "a1 a2 a2"
+    "b1 b2 b2"
+    "c1 c2 c3"
+    "d1 d2 d2";
+}
+
+.name {
+  grid-area: a1;
+  font-weight: 600;
+}
+
+.valueName {
+  grid-area: a2;
+  font-weight: 50;
+}
+
+.ID {
+  grid-area: b1;
+  font-weight: 600;
+}
+
+.valueID {
+  grid-area: b2;
+  font-weight: 50;
+}
+
+.status {
+  grid-area: c1;
+  font-weight: 600;
+}
+
+.valueStatus {
+  grid-area: c2;
+  font-weight: 50;
+}
+
+.button {
+  grid-area: c3;
+}
+
+.owner {
+  grid-area: d1;
+  font-weight: 600;
+}
+
+.valueOnwer {
+  grid-area: d2;
+  font-weight: 50;
+}
+
+h2 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h3 {
+  font-family: "Times New Roman", Times, serif;
+  margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+  .body h2,
+  h3 {
+    font-size: 11px;
+  }
+
+  button {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  th {
+    width: 100px;
+  }
+  th,
+  td {
+    display: inline-block;
+    border: 0px solid transparent;
+  }
+
+  .body {
+    display: block;
+    height: 550px;
+    width: 400px;
+    overflow: scroll;
+  }
+
+  img {
+    display: block;
+    width: auto;
+    height: auto;
+    text-align: center;
+  }
+
+  h2, h3 {
+    margin: 0px !important;
+    vertical-align: bottom;
+    font-size: 16px !important;
+  }
+
+  .item {
+    height: auto;
+  }
+
+  .layoutCommonInfo {
+    display: grid;
+    grid-template-columns: 40% 50% 5%;
+    grid-template-rows: repeat(25px 4);
+    grid-template-areas:
+      "a1 a2 a2"
+      "b1 b2 b2"
+      "c1 c2 c3"
+      "d1 d2 d2";
+  }
+
+}
+@media (max-width: 360px) {
+  .body {
+    width: 360px;
+  }
+}
+
+@media (max-width: 320px) {
+  .body {
+    width: 320px;
+  }
+}

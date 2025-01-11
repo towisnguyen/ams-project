@@ -1,0 +1,46 @@
+<div class="flex h-full">
+  <div class="overflow-hidden flex flex-wrap flex-col justify-center px-10">
+    <div>
+      <h1 class="animation a1 text-[#4f46a5]">Welcome Back</h1>
+      <h4 class="animation a2">
+        Log in to your account using email and password
+      </h4>
+    </div>
+    <div>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <!--name phải giống với backend-->
+        <input
+          type="Username"
+          ngModel
+          name="username"
+          id="Username"
+          class="animation a3 h-10 border border-[#ddd] rounded mb-2 pl-2.5 w-4/5"
+          placeholder="Name"
+        />
+        <br />
+        <input
+          type="Password"
+          ngModel
+          name="password"
+          id="Password"
+          class="animation a4 h-10 border border-[#ddd] rounded mb-2 pl-2.5 w-4/5"
+          placeholder="Password"
+        />
+
+        <p class="animation a5"><a href="#">Forgot Password</a></p>
+
+        <input
+          type="submit"
+          value="LOGIN"
+          class="animation a6 border border-black rounded p-1"
+        />
+      </form>
+    </div>
+  </div>
+  <div
+    class="flex shrink grow bg-cover"
+    style="
+      background-image: url(https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80);
+    "
+  ></div>
+</div>

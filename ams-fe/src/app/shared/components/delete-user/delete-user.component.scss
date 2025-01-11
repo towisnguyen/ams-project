@@ -1,0 +1,82 @@
+.container-delete-user {
+  border-radius: 5px;
+  padding: 20px;
+  max-height: 600px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-delete-user h1 {
+  text-align: center;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.form-group {
+  font-size: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.close-button {
+  float: right;
+  top: -24px;
+  right: -24px;
+  border: white;
+  border-radius: 4px;
+  background-color: white;
+}
+.close-button:hover {
+  background-color: rgb(139, 139, 139);
+}
+
+input[type="delete"] {
+  width: 150px;
+  text-align: center;
+  background-color: #e63939;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #ff0202;
+}
+
+input[type="cancel"] {
+  width: 150px;
+  text-align: center;
+  background-color: #009cff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+input[type="cancel"]:hover {
+  background-color: #009cff;
+}
+
+.all-button {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.delete-confirm-message {
+  text-align: center;
+}

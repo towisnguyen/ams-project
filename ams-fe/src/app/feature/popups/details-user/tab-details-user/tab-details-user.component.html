@@ -1,0 +1,98 @@
+<div class="body">
+  <div class="item">
+    <div class="img">
+      <img src="../../../../../assets/images/avatar_person.jpg" alt="" />
+    </div>
+    <div class="commonInfo">
+      <div class="layoutCommonInfo">
+        <h2 class="name">User Name:</h2>
+        <h3 class="valueName">{{ fullData?.username }}</h3>
+
+        <h2 class="ID">ID:</h2>
+        <h3 class="valueID">{{ fullData?.id }}</h3>
+
+        <h2 class="status">Status:</h2>
+        <h3 class="valueStatus">{{ fullData?.status }}</h3>
+        <div *ngIf="fullData?.status === 'ACTIVE'">
+          <button class="buttonActive" style="margin-top: 10px"></button>
+        </div>
+        <div *ngIf="fullData?.status === 'DEACTIVE'">
+          <button class="buttonDeactive" style="margin-top: 10px"></button>
+        </div>
+
+        <h2 class="owner">Role:</h2>
+        <h3 class="valueOnwer">{{ fullData?.role }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <table>
+      <tbody>
+        <!--First Name-->
+        <tr>
+          <th>First Name</th>
+          <td>
+            {{ fullData?.firstName }}
+          </td>
+        </tr>
+
+        <!--Last Name-->
+        <tr>
+          <th>Last Name</th>
+          <td>
+            {{ fullData?.lastName }}
+          </td>
+        </tr>
+
+        <!--Full Name-->
+        <tr>
+          <th>Full Name</th>
+          <td>
+            {{ fullData?.fullName }}
+          </td>
+        </tr>
+
+        <!--Gender-->
+        <tr>
+          <th>Gender</th>
+          <td>
+            {{ fullData?.gender }}
+          </td>
+        </tr>
+
+        <!--Address-->
+        <tr>
+          <th>Address</th>
+          <td>
+            {{ fullData?.address }}
+          </td>
+        </tr>
+
+        <!--Birthdate-->
+        <tr>
+          <th>Birthdate</th>
+          <td>
+            {{ fullData?.birthDate }}
+          </td>
+        </tr>
+
+        <!--Email-->
+        <tr>
+          <th>Email</th>
+          <td>
+            {{ fullData?.email }}
+          </td>
+        </tr>
+
+        <!--Phone-->
+        <tr>
+          <th>Phone</th>
+          <td>
+            {{ fullData?.phone }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>Manage Profile</h1>
+    </div>
+    <div>
+      <button class="btn-closePopup" (click)="onExitClick()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="close"
+        ></mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="body">
+    <div>
+      <body>
+        <div class="testbox">
+          <form action="/" #editProfileForm="ngForm" autocomplete="off">
+            <div class="w-full h-[200px] bg-slate-200 rounded-lg">
+              <div
+                class="w-[604px] h-[100px] bg-slate-500 hover:bg-slate-600 myDIV"
+              >
+                <div
+                  class="w-[105px] h-[105px] rounded-full relative left-[50px] top-[40px]"
+                >
+                  <img
+                    src="../../../../assets/images/avatar_person.jpg"
+                    class="w-[105px] h-[105px] rounded-full border-2 border-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!--Information of asset-->
+            <div class="colums">
+              <div class="item">
+                <label for="firstName"
+                  >First Name<span class="text-red-600">*</span></label
+                >
+                <input
+                  id="firstName"
+                  type="text"
+                  name="firstName"
+                  [(ngModel)]="userInfo.firstName"
+                  required=""
+                />
+              </div>
+              <div class="item">
+                <label for="lastName"
+                  >Last Name<span class="text-red-600">*</span></label
+                >
+                <input
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  [(ngModel)]="userInfo.lastName"
+                  required=""
+                />
+              </div>
+            </div>
+            <div class="w-full">
+              <label for="fullName"
+                >Full Name<span class="text-red-600">*</span></label
+              >
+              <input
+                id="fullName"
+                type="text"
+                name="fullName"
+                [(ngModel)]="userInfo.fullName"
+                required=""
+              />
+            </div>
+            <div>
+              <label for="gender"
+                >Gender<span class="text-red-600">*</span></label
+              >
+              <select
+                id="gender"
+                name="gender"
+                [(ngModel)]="userInfo.gender"
+                required=""
+              >
+                <option value="" selected disable hidden>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="w-full">
+              <label for="phone"
+                >Phone<span class="text-red-600">*</span></label
+              >
+              <input
+                id="phone"
+                type="text"
+                name="phone"
+                [(ngModel)]="userInfo.phone"
+                required=""
+              />
+            </div>
+            <div class="w-full">
+              <label for="birthDate"
+                >Day of birth<span class="text-red-600">*</span></label
+              >
+              <input
+                id="birthDate"
+                name="birthDate"
+                type="date"
+                [(ngModel)]="userInfo.birthDate"
+                required=""
+              />
+            </div>
+            <div class="w-full">
+              <label for="address"
+                >Address<span class="text-red-600">*</span></label
+              >
+              <input
+                id="address"
+                type="text"
+                name="address"
+                [(ngModel)]="userInfo.address"
+                required=""
+              />
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-evenly;
+                align-items: flex-end;
+              "
+            >
+              <div
+                class="btn-block"
+                (click)="onExitClick()"
+                style="display: inline"
+              >
+                <button
+                  class="btn-submit"
+                  type="submit"
+                  href="/"
+                  value="Add"
+                  [disabled]="!editProfileForm.valid"
+                  (click)="onEditUser(userID)"
+                >
+                  Save
+                </button>
+              </div>
+              <div (click)="onExitClick()" style="display: inline">
+                <button class="btn-cancel">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </body>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>

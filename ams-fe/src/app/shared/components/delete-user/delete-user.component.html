@@ -1,0 +1,19 @@
+<div class="container-delete-user">
+  <button class="close-button" (click)="onCancelExitClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h1>Delete User</h1>
+  <div class="get-multi-users">
+    <div class="delete-confirm-message">
+      <h3>Do you want to delete {{ nameOfUser }}?</h3>
+    </div>
+    <div class="all-button">
+      <div class="delete-user-button" (click)="onDeleteExitClick(idOfUser)">
+        <input type="delete" value="Delete" disabled />
+      </div>
+      <div class="cancel-button" (click)="onCancelExitClick()">
+        <input type="cancel" value="Cancel" disabled />
+      </div>
+    </div>
+  </div>
+</div>
